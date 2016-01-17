@@ -4,8 +4,8 @@ public class TimeBoard{
     private int month;
 
     public TimeBoard(){
-        year = 0;
-	month = 0;
+        year = 1;
+	month = 1;
     }
 
     public void diceToMonth(int passedMonth){

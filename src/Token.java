@@ -8,4 +8,8 @@ public class Token{
     public String showAttr(){
         return attribute;
     }
+    
+    public String toString(){
+        return attribute;
+    }
 }
