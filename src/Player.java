@@ -5,6 +5,8 @@ public class Player{
     private int summonLevel;
     private int maxToken;
     private int point;
+    private boolean release;
+    private boolean card;
     private Card [] hand;
     private Card [] Summoned;
     private Card [] yearTwo;
@@ -20,6 +22,10 @@ public class Player{
 
     public void levelUp(){
         summonLevel += 1;
+    }
+
+    public void levelUp(int input){
+        summonLevel += input;
     }
 
     public void levelDown(){
@@ -40,6 +46,14 @@ public class Player{
 
     public int showLevel(){
 	return summonLevel;
+    }
+
+    public boolean showRelease(){
+	return release;
+    }
+
+    public boolean showCard(){
+	return card;
     }
 
     public void getToken(Token input){
@@ -72,6 +86,29 @@ public class Player{
     public void discardToken(String input){
 	Token token = new Token(input);
 	discardToken(token);
+    }
+
+    public void pickDice(ArrayList<dicePhase> dPhase,int i){
+	dicePhase buffer = dPhase.get(i);
+	ArrayList <Token> t = buffer.getToken();
+
+	addPoint(buffer.getPoint());
+	levelUp(buffer.getSummonLevel());
+	for (int j = 0;j < t.size();j++){
+	    getToken(t.get(j));
+	}
+
+	if (buffer.getRelease() == true){
+            System.out.println("I can release");
+	}
+	release = buffer.getRelease();
+
+	if (buffer.getCard() == true){
+	    System.out.println("I can get a card");
+	}
+	card = buffer.getCard();
+
+	dPhase.remove(i);
     }
 
 }
